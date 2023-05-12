@@ -1,1 +1,1 @@
-# ipglobal-challenge
+# Ipglobal - Prueba Técnica
