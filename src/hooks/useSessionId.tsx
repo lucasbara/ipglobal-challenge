@@ -4,7 +4,7 @@ import { useLocalStorage } from "@/hooks/useLocalStorage";
 import { getSessionId } from "@/controllers/movies";
 
 export function useSessionId() {
-  const [sessionId, setSessionId] = useLocalStorage("sessionId", "");
+  const [sessionId, setSessionId] = useLocalStorage("sessionId", null);
 
   const { showBoundary } = useErrorBoundary();
 
