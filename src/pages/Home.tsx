@@ -44,7 +44,7 @@ export function Home() {
           value={search}
         />
       </div>
-      <section className="min-h-[100vh] h-full w-full flex-col justify-center items-start">
+      <section className="relative min-h-[80vh] h-full w-full flex-col justify-between items-start">
         {isLoading ? (
           <LoadingSpinner />
         ) : (
@@ -52,26 +52,6 @@ export function Home() {
             {movies.length ? (
               <>
                 <MoviesList movies={movies} showRating={false} />
-                <div className="w-full flex justify-center items-center p-2 mt-10">
-                  <Button
-                    disabled={page === 1}
-                    onClick={onPreviousPage}
-                    type="button"
-                    variant="primary"
-                  >
-                    <MdKeyboardArrowLeft className="text-xl" />
-                    Previous
-                  </Button>
-                  <Button
-                    disabled={page === totalPages}
-                    onClick={onNextPage}
-                    type="button"
-                    variant="primary"
-                  >
-                    Next
-                    <MdKeyboardArrowRight className="text-xl" />
-                  </Button>
-                </div>
               </>
             ) : (
               <p className="h-[50%] flex items-center justify-center">
@@ -79,6 +59,28 @@ export function Home() {
               </p>
             )}
           </>
+        )}
+        {!isLoading && movies.length && (
+          <div className="absolute left-1/2 transform -translate-x-1/2 flex justify-center items-center p-2 pt-5">
+            <Button
+              disabled={page === 1}
+              onClick={onPreviousPage}
+              type="button"
+              variant="primary"
+            >
+              <MdKeyboardArrowLeft className="text-xl" />
+              Previous
+            </Button>
+            <Button
+              disabled={page === totalPages}
+              onClick={onNextPage}
+              type="button"
+              variant="primary"
+            >
+              Next
+              <MdKeyboardArrowRight className="text-xl" />
+            </Button>
+          </div>
         )}
       </section>
     </Layout>
