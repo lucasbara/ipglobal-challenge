@@ -1,5 +1,8 @@
 import { ReactNode } from "react";
 import { Link } from "react-router-dom";
+import { AiFillHeart } from "react-icons/ai";
+import { BiCodeAlt } from "react-icons/bi";
+import { DiReact } from "react-icons/di";
 import TheMovieLogo from "@/assets/images/the-movie-logo.png";
 
 type LayoutProps = {
@@ -22,6 +25,22 @@ export function Layout({ children }: LayoutProps) {
         </Link>
       </header>
       <main className="flex-1 p-6">{children} </main>
+      <footer className="w-full h-20 flex justify-center items-center py-10">
+        <p className="flex justify-center items-center">
+          <BiCodeAlt className="mx-1" />
+          with
+          <AiFillHeart className="mx-1" /> by
+          <a
+            href="https://github.com/lucasbara"
+            className="mx-1"
+            target="_blank"
+          >
+            Lucas Barallobre
+          </a>
+          using
+          <DiReact className="mx-1" />
+        </p>
+      </footer>
     </div>
   );
 }
