@@ -25,7 +25,7 @@ export function Layout({ children }: LayoutProps) {
         </Link>
       </header>
       <main className="flex-1 p-6">{children} </main>
-      <footer className="w-full h-20 flex justify-center items-center py-10">
+      <footer className="w-full h-20 flex justify-center items-center pt-20 pb-10">
         <p className="flex justify-center items-center">
           <BiCodeAlt className="mx-1" />
           with
