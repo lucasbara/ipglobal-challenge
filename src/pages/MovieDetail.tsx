@@ -94,7 +94,7 @@ export function MovieDetail() {
                     {title}
                   </h2>
 
-                  <div className="flex items-center ml-4">
+                  <div className="flex flex-wrap items-center ml-4">
                     {genres.map((genre) => (
                       <div
                         key={genre.id}
