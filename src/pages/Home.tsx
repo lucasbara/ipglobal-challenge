@@ -2,6 +2,7 @@ import { useState } from "react";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 import { Layout } from "@/layouts/Layout";
 import { useMovies } from "@/hooks/useMovies";
+import { useSessionId } from "@/hooks/useSessionId";
 import { Button } from "@/components/Button";
 import { MoviesList } from "@/components/MoviesList";
 import { TextField } from "@/components/TextField";
@@ -14,6 +15,8 @@ export function Home() {
   const [search, setSearch] = useState("");
 
   const { isLoading, movies, totalPages } = useMovies(page, search);
+
+  const { sessionId } = useSessionId();
 
   const onNextPage = () => {
     setPage(page + 1);
