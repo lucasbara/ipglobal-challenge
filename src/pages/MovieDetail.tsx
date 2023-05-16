@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { MoviesContext } from "@/context/MoviesContext";
 import { Link, useParams } from "react-router-dom";
 import { Layout } from "@/layouts/Layout";
@@ -10,13 +10,11 @@ import {
   MdTrendingUp,
 } from "react-icons/md";
 import { useGenres } from "@/hooks/useGenres";
-import { Button } from "@/components/Button";
-import { getMovieDetails, rateMovie } from "@/controllers/movies";
+import { rateMovie } from "@/controllers/movies";
 import { useSessionId } from "@/hooks/useSessionId";
 import { Rating } from "@/components/Rating";
 import { useRatedMovies } from "@/hooks/useRatedMovies";
 import { MoviesContextType, MovieType } from "@/types/movies";
-import { useMovieDetail } from "@/hooks/useMovieDetail";
 import { toast } from "react-toastify";
 import { LoadingSpinner } from "@/components/LoadingSpinner";
 
@@ -28,7 +26,7 @@ export function MovieDetail() {
   const { sessionId } = useSessionId();
   const { ratedMovies } = useRatedMovies(sessionId);
 
-  const { id } = useParams<any>();
+  const { id } = useParams<{ id: string }>();
 
   const movie = movies.find((movie: MovieType) => movie.id === Number(id));
   const isRated = ratedMovies.find(
@@ -53,14 +51,14 @@ export function MovieDetail() {
 
   const onRate = async (value: number): Promise<void> => {
     setVote(value);
+
     try {
       const res = await rateMovie(movieId, value, sessionId);
+
       if (res.success) {
         setHasVoted(true);
         toast.success(`You rated ${title} with ${value} stars!`);
-      } else {
-        toast.error(res.status_message);
-      }
+      } else toast.error(res.status_message);
     } catch (error) {
       toast.error("An error occurred while rating the movie.");
     }
