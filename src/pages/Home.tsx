@@ -46,27 +46,35 @@ export function Home() {
           <LoadingSpinner />
         ) : (
           <>
-            <MoviesList movies={movies} showRating={false} />
-            <div className="w-full flex justify-center items-center p-2 mt-10">
-              <Button
-                disabled={page === 1}
-                onClick={onPreviousPage}
-                type="button"
-                variant="primary"
-              >
-                <MdKeyboardArrowLeft className="text-xl" />
-                Previous
-              </Button>
-              <Button
-                disabled={page === totalPages}
-                onClick={onNextPage}
-                type="button"
-                variant="primary"
-              >
-                Next
-                <MdKeyboardArrowRight className="text-xl" />
-              </Button>
-            </div>
+            {movies.length ? (
+              <>
+                <MoviesList movies={movies} showRating={false} />
+                <div className="w-full flex justify-center items-center p-2 mt-10">
+                  <Button
+                    disabled={page === 1}
+                    onClick={onPreviousPage}
+                    type="button"
+                    variant="primary"
+                  >
+                    <MdKeyboardArrowLeft className="text-xl" />
+                    Previous
+                  </Button>
+                  <Button
+                    disabled={page === totalPages}
+                    onClick={onNextPage}
+                    type="button"
+                    variant="primary"
+                  >
+                    Next
+                    <MdKeyboardArrowRight className="text-xl" />
+                  </Button>
+                </div>
+              </>
+            ) : (
+              <p className="h-[50%] flex items-center justify-center">
+                No movies found.
+              </p>
+            )}
           </>
         )}
       </section>
